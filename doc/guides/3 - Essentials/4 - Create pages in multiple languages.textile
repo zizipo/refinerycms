@@ -1,0 +1,18 @@
+h2. Create pages in multiple languages
+
+Refinery supports multi-lingual content. This guide will show you how to:
+
+* Set up multiple front-end languages.
+* Create pages in multiple languages.
+
+endprologue.
+
+h3. Setup
+
+To add more locales for use on the frontend of your website you have to first
+edit a page (any page) so that the relevant settings get created.
+You don't have to save the page, merely opening the form is enough.
+
+Next go to the 'Settings' tab and find the setting called 'I18n Translation Frontend Locales'.
+Edit this setting and add your locale to the list. For this example, we'll use 'de'.
+
