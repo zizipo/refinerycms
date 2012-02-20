@@ -28,6 +28,7 @@ end
 group :development, :test do
   gem 'refinerycms-testing', '~> 2.0.0'
   gem 'generator_spec', '>= 0.8.5'
+  gem 'poltergeist'
 
   platforms :mswin, :mingw do
     gem 'win32console'

@@ -25,7 +25,8 @@ def setup_environment
   end
 
   # Set javascript driver for capybara
-  Capybara.javascript_driver = :selenium
+  require 'capybara/poltergeist'
+  Capybara.javascript_driver = :poltergeist
 end
 
 def each_run
