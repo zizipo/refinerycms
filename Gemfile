@@ -6,13 +6,14 @@ gemspec
 # gem 'refinerycms-i18n', '~> 2.1.0.dev', github: 'parndt/refinerycms-i18n'
 # gem 'routing-filter', path: '../routing-filter'
 
+gem 'protected_attributes', github: 'rails/protected_attributes' 
 # Fixes uniqueness constraint on translated columns.
 # See: https://github.com/svenfuchs/globalize3/pull/121
 gem 'globalize3', github: 'svenfuchs/globalize3'
 gem 'paper_trail', github: 'parndt/paper_trail', branch: 'rails4'
 gem 'devise', github: 'parndt/devise', branch: 'rails4'
 gem 'awesome_nested_set', github: 'collectiveidea/awesome_nested_set'
-gem 'orm_adapter', github: 'ianwhite/orm_adapter'
+gem 'orm_adapter', github: 'ugisozols/orm_adapter', branch: 'rails4'
 gem 'database_cleaner', github: "ugisozols/database_cleaner", branch: 'rails4'
 
 # Database Configuration
@@ -108,9 +109,9 @@ else
 end
 
 if ENV['AR_DEPRECATED_FINDERS']
-  gem 'active_record_deprecated_finders', path: ENV['AR_DEPRECATED_FINDERS']
+  gem 'activerecord-deprecated_finders', path: ENV['AR_DEPRECATED_FINDERS']
 else
-  gem 'active_record_deprecated_finders', github: 'rails/active_record_deprecated_finders'
+  gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 end
 
 # gem 'rack', github: 'rack/rack'
