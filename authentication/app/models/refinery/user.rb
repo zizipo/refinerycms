@@ -1,5 +1,6 @@
 require 'devise'
 require 'friendly_id'
+require 'acts_as_indexed'
 
 module Refinery
   class User < Refinery::Core::BaseModel
@@ -11,6 +12,9 @@ module Refinery
                        class_name: "UserPlugin", dependent: :destroy
 
     friendly_id :username, use: [:slugged]
+
+    # Docs for acts_as_indexed http://github.com/dougal/acts_as_indexed
+    acts_as_indexed :fields => [:username, :email]
 
     # Include default devise modules. Others available are:
     # :token_authenticatable, :confirmable, :lockable and :timeoutable

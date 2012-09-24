@@ -11,22 +11,26 @@ module Refinery
       "Generates an extension which is set up for frontend form submissions like a contact page."
     end
 
-    def generator_command
-      'rails generate refinery:form'
-    end
-
     def generate
       sanity_check!
 
       evaluate_templates!
 
-      merge_locales!
+      unless options[:pretend]
+        merge_locales!
 
-      copy_or_merge_seeds!
+        copy_or_merge_seeds!
 
-      append_extension_to_gemfile!
+        append_extension_to_gemfile!
+      end
 
       finalize_extension!
+    end
+
+    protected
+
+    def generator_command
+      'rails generate refinery:form'
     end
 
   end

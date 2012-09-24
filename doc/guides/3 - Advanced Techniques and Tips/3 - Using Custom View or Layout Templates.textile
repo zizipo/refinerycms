@@ -60,7 +60,7 @@ Create +app/views/refinery/pages/about_us.html.erb+, where +about_us+ is the
 name of the file you whitelisted.
 
 * Inside of this file, you can either +render '/refinery/content_page'+, or you
-can use +@page.content_for?(:body)+ to output the content of a specific page part.
+can use +@page.content_for(:body)+ to output the content of a specific page part.
 
 h4. Set Back-End Select
 
@@ -105,7 +105,7 @@ end
 </ruby>
 
 You can also entirely override the +show+ method inside this decorator, too, if
-need be. You can "view the existing method here":https://github.com/resolve/refinerycms/blob/master/pages/app/controllers/refinery/pages_controller.rb#L23-39
+need be. You can "view the existing method here":https://github.com/refinery/refinerycms/blob/master/pages/app/controllers/refinery/pages_controller.rb#L23-39
 for reference.
 
 This method has the advantage of constraining the find to occur only on pages

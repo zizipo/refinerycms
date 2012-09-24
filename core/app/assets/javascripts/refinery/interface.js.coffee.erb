@@ -7,10 +7,6 @@
     $(".field > .wym_box").corner "5px tl"
     $(".wym_iframe iframe").corner "2px"
     $(".form-actions:not(\".form-actions-dialog\")").corner "5px"
-  $("#recent_activity li a, #recent_inquiries li a").each (i, a) ->
-    $(this).textTruncate
-      width: $(this).width()
-      tooltip: false
 
   $("textarea.wymeditor").each ->
     textarea = $(this)
@@ -55,7 +51,8 @@
     e.preventDefault()
 
   $("#existing_image img").load ->
-    $("form.edit_image .form-actions").css "margin-top": ($("#existing_image").height() - $("form.edit_image").height() + 8)
+    margin_top = ($("#existing_image").height() - $("form.edit_image").height() + 8)
+    $("form.edit_image .form-actions").css "margin-top": margin_top if margin_top > 0
 
   $(".form-actions .form-actions-left input:submit#submit_button").click (e) ->
     $("<img src='<%= asset_path 'refinery/ajax-loader.gif' %>' width='16' height='16' class='save-loader' />").appendTo $(this).parent()

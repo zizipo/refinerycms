@@ -22,16 +22,22 @@ module Refinery
 
       evaluate_templates!
 
-      merge_locales!
+      unless options[:pretend]
+        merge_locales!
 
-      copy_or_merge_seeds!
+        copy_or_merge_seeds!
 
-      append_extension_to_gemfile!
+        append_extension_to_gemfile!
+      end
 
       finalize_extension!
     end
 
   protected
+
+    def generator_command
+      'rails generate refinery:engine'
+    end
 
     def reject_file_with_skip_frontend?(file)
       (skip_frontend? && (file.to_s.include?('app') && file.to_s.scan(/admin|models|mailers/).empty?)) ||

@@ -118,6 +118,6 @@ end
 # gem 'arel', github: 'rails/arel'
 
 # Load local gems according to Refinery developer preference.
-if File.exist?(File.expand_path('../.gemfile', __FILE__))
-  eval(File.read(File.expand_path('../.gemfile', __FILE__)))
+if File.exist? local_gemfile = File.expand_path('../.gemfile', __FILE__)
+  eval File.read(local_gemfile)
 end
