@@ -27,6 +27,7 @@ class CreateRefinerycmsPagesSchema < ActiveRecord::Migration
       t.integer   :depth
       t.string    :view_template
       t.string    :layout_template
+      t.integer   :domain_id
 
       t.timestamps
     end

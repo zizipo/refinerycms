@@ -3,8 +3,10 @@ require 'friendly_id'
 require 'acts_as_indexed'
 
 module Refinery
-  class User < Refinery::Core::BaseModel
+  class User < Refinery::Core::BaseModelWithDomain
     extend FriendlyId
+    default_scope lambda{where(:domain_id=>@@domain_id)}
+
 
     has_and_belongs_to_many :roles, :join_table => :refinery_roles_users
 
@@ -27,7 +29,7 @@ module Refinery
     attr_accessor :login
     attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :plugins, :login
 
-    validates :username, :presence => true, :uniqueness => true
+    validates :username, :presence => true, :uniqueness  => {:scope => :domain_id}
     before_validation :downcase_username
 
     class << self

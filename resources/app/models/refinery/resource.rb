@@ -2,14 +2,18 @@ require 'dragonfly'
 require 'acts_as_indexed'
 
 module Refinery
-  class Resource < Refinery::Core::BaseModel
+  class Resource < Refinery::Core::BaseModelWithDomain
     ::Refinery::Resources::Dragonfly.setup!
+
+    default_scope lambda{where(:domain_id=>@@domain_id)}
 
     include Resources::Validators
 
     attr_accessible :id, :file
 
     resource_accessor :file
+
+
 
     validates :file, :presence => true
     validates_with FileSizeValidator

@@ -12,6 +12,7 @@ module Refinery
                     :login?
 
       protect_from_forgery # See ActionController::RequestForgeryProtection
+      send :before_filter, :set_domain_to_refinery_model
 
       send :include, Refinery::Crud # basic create, read, update and delete methods
 
@@ -64,6 +65,17 @@ module Refinery
     end
 
   protected
+
+    def set_domain_to_refinery_model
+
+      bare_domain = (matchdata = request.host.match(/^(\w+\.)*(\w+)\.jobs(:(\d+))?$/)) ? matchdata[2] : nil
+
+      if (bare_domain.present? && domain = Refinery::Core::Domain.find_by_bare_domain(bare_domain))
+        Refinery::Core::BaseModelWithDomain.domain_id = domain.id
+      else
+        Refinery::Core::BaseModelWithDomain.domain_id = nil
+      end
+    end
 
     def force_ssl?
       redirect_to :protocol => 'https' if !request.ssl? && Refinery::Core.force_ssl
