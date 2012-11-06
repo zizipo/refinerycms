@@ -53,13 +53,46 @@ if Refinery::Page.where(:menu_match => "^/$",:domain_id=>domain.try(:id)).empty?
                   :position => 1
                 })
   end
+
+  if Refinery::Page.by_title("Contact").where(:domain_id=>domain.try(:id),).empty?
+    contact_page = ::Refinery::Page.create(:title => "Contact",:domain=>domain)
+
+    contact_page.parts.create({
+                                   :title => "Body",
+                                   :body => "<p>contact</p>",
+                                   :position => 0
+                               })
+    contact_page.parts.create({
+                                   :title => "Side Body",
+                                   :body => "<p>contact_side.</p>",
+                                   :position => 1
+                               })
+  end
+
+  if Refinery::Page.by_title("Problem").where(:domain_id=>domain.try(:id),).empty?
+    problem_page = ::Refinery::Page.create(:title => "Problem",:domain=>domain)
+
+    problem_page.parts.create({
+                                   :title => "Body",
+                                   :body => "<p>problem</p>",
+                                   :position => 0
+                               })
+    problem_page.parts.create({
+                                   :title => "Side Body",
+                                   :body => "<p>problem_side</p>",
+                                   :position => 1
+                               })
+  end
+
 end
 
 (Refinery.i18n_enabled? ? Refinery::I18n.frontend_locales : [:en]).each do |lang|
   I18n.locale = lang
   {'home' => "Home",
    'page-not-found' => 'Page not found',
-   'about' => 'About'
+   'about' => 'About',
+   'problem'=>'Problem',
+   'contact'=>"Contact"
   }.each do |slug, title|
     Refinery::Page.by_title(title).each { |page| page.update_attributes(:slug => slug) }
   end
