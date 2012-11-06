@@ -1,6 +1,7 @@
 domain = nil
 if (ENV["new_domain"].present?)
   domain = Refinery::Core::Domain.find_or_create_by_bare_domain(ENV["new_domain"])
+  Refinery::Core::BaseModelWithDomain.domain_id = domain.id
 end
 
 if Refinery::Page.where(:menu_match => "^/$",:domain_id=>domain.try(:id)).empty?
